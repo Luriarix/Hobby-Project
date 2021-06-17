@@ -1,52 +1,53 @@
 package com.qa.hobby.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Player {
-	
+public class Characters {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-		
+	
 	@Column
 	private String name;
-	
-	@OneToMany(mappedBy = "characters")
-	private List<Characters> characters;
-	
-	public Player() {
+
+	@ManyToOne
+	@JsonIgnore
+	private Player player;
+
+	public Characters() {
 		super();
 	}
 
-	public Player(Long id, String name, List<Characters> character) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.characters = character;
-	}
-
-	public Player(Long id, String name) {
+	public Characters(Long id, String name, Player player) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.player = player;
 	}
 
-	public Player(String name) {
+	public Characters(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public Characters(String name) {
 		super();
 		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", characters=" + characters + "]";
+		return "Characters [id=" + id + ", name=" + name + ", player=" + player + "]";
 	}
 
 	public Long getId() {
@@ -65,21 +66,21 @@ public class Player {
 		this.name = name;
 	}
 
-	public List<Characters> getCharacters() {
-		return characters;
+	public Player getPlayer() {
+		return player;
 	}
 
-	public void setCharacters(List<Characters> characters) {
-		this.characters = characters;
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((characters == null) ? 0 : characters.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((player == null) ? 0 : player.hashCode());
 		return result;
 	}
 
@@ -91,12 +92,7 @@ public class Player {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Player other = (Player) obj;
-		if (characters == null) {
-			if (other.characters != null)
-				return false;
-		} else if (!characters.equals(other.characters))
-			return false;
+		Characters other = (Characters) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -107,7 +103,11 @@ public class Player {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (player == null) {
+			if (other.player != null)
+				return false;
+		} else if (!player.equals(other.player))
+			return false;
 		return true;
 	}
-
 }
