@@ -19,9 +19,10 @@ import com.qa.hobby.service.PlayerService;
 @RestController
 @RequestMapping("/player")
 public class PlayerController {
+	
+	@Autowired
 	private PlayerService service;
 
-	@Autowired
 	public PlayerController(PlayerService service) {
 		super();
 		this.service = service;
