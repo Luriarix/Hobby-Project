@@ -1,0 +1,1 @@
+insert into player (id, name) values (1, Red);

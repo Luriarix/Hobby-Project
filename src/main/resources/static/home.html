@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Character Tracker</title>
+    <meta http-equiv="refresh" content="5">
+</head>
+
+<body>
+
+    <section style="float:right;width:50%;background-color:red">
+        <table>
+            <tr>
+                <th><label for="ownedCharacters">Player Id: </label>
+                    <input style="width:50px" type="text" id="ownedCharacters" value="" style="width:25%" /></th>
+                <th><button type="reset" name="ResetBtn" value="reload">Refresh</button></th>
+            </tr>
+            <tr>
+                <th>Player</th>
+                <th>Character</th>
+            </tr>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <section style="width:50%">
+        <fieldset>
+            <legend>Player</legend>
+            <label for="player">Player Name: </label>
+            <input type="text" id="player" value="" />
+            <br>
+            <label for="player">New Name: </label>
+            <input type="text" id="player" value="" />
+            <br>
+            <input type="radio" name="PlayerCrudFunctionality" value="Create" />New
+            <input type="radio" name="PlayerCrudFunctionality" value="Read" />Show all players
+            <input type="radio" name="PlayerCrudFunctionality" value="Update" />Update
+            <input type="radio" name="PlayerCrudFunctionality" value="Delete" />Delete
+            <br>
+            <button type="submit" name="OKBtn" value="OK">Submit</button>
+        </fieldset>
+        <br>
+        <br>
+        <fieldset>
+            <legend>Character</legend>
+            <label for="playerId">Player Id: </label>
+            <input type="text" id="playerId" value="" />
+            <br>
+            <label for="character">Character: </label>
+            <input type="text" id="character" value="" />
+            <br>
+            <label for="character">New Name: </label>
+            <input type="text" id="character" value="" />
+            <br>
+            <input type="radio" name="CharacterCrudFunctionality" value="Create" />New
+            <input type="radio" name="CharacterCrudFunctionality" value="Read" />Show all players
+            <input type="radio" name="CharacterCrudFunctionality" value="Update" />Update
+            <input type="radio" name="CharacterCrudFunctionality" value="Delete" />Delete
+            <br>
+            <button type="submit" name="OKBtn" value="OK">Submit</button>
+        </fieldset>
+    </section>
+
+    <script src="home.js"></script>
+</body>
+
+</html>
