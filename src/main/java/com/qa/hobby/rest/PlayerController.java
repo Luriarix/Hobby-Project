@@ -20,16 +20,16 @@ import com.qa.hobby.service.PlayerService;
 @RequestMapping("/player")
 public class PlayerController {
 	
-	@Autowired
 	private PlayerService service;
 
+	@Autowired
 	public PlayerController(PlayerService service) {
 		super();
 		this.service = service;
 	}
 	
 	@PostMapping("/create")
-	public PlayerDTO createPlayer(@RequestBody Player player) {
+	public PlayerDTO createPlayer(@RequestBody PlayerDTO player) {
 		return this.service.createPlayer(player);
 	}
 	

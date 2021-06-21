@@ -5,44 +5,48 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.qa.hobby.DTO.CharacterDTO;
 import com.qa.hobby.domain.Characters;
 import com.qa.hobby.repo.CharacterRepo;
-import com.qa.hobby.utils.CharacterMapper;
+
 
 @Service
 public class CharacterService {
 	
 	private CharacterRepo repo;
 	
-	private CharacterMapper map;
+	private ModelMapper map;
 
-	public CharacterService(CharacterRepo repo, CharacterMapper map) {
+	public CharacterService(CharacterRepo repo, ModelMapper map) {
 		super();
 		this.repo = repo;
 		this.map = map;
 	}
 
 	public CharacterDTO createCharacter(Characters character) {
-		return this.map.mapToDTO(this.repo.save(character));
+		return this.map.map(this.repo.save(character), CharacterDTO.class);
 	}
 
 	public List<CharacterDTO> getCharacter() {
-		return this.repo.findAll().stream().map(charac -> this.map.mapToDTO(charac)).collect(Collectors.toList());
+		return this.repo.findAll().stream().map(charac -> this.map.map(charac, CharacterDTO.class)).collect(Collectors.toList());
 	}
 
 	public CharacterDTO getCharacterById(Long id) {
 		Characters exist = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException());
 
-		return this.map.mapToDTO(exist);	
+		return this.map.map(exist, CharacterDTO.class);	
 	}
 
-	public CharacterDTO updateCharacter(Long id, Character character) {
+	public CharacterDTO updateCharacter(Long id, Characters character) {
 		Characters exist = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException());
 
-		return null;
+		exist.setName(character.getName());
+		exist.setPlayer(character.getPlayer());
+		
+		return this.map.map(this.repo.save(exist), CharacterDTO.class);
 	}
 
 	public boolean removeCharacter(Long id) {

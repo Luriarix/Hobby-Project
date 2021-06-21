@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Player {
 	
@@ -20,6 +22,7 @@ public class Player {
 	private String name;
 	
 	@OneToMany(mappedBy = "characters")
+	@JsonIgnore
 	private List<Characters> characters;
 	
 	public Player() {

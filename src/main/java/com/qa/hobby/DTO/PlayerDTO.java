@@ -29,6 +29,11 @@ public class PlayerDTO {
 		this.name = name;
 	}
 
+	public PlayerDTO(String name) {
+		super();
+		this.name = name;
+	}
+
 	public Long getId() {
 		return id;
 	}

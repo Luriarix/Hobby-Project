@@ -44,7 +44,7 @@ public class CharacterController {
 	}
 
 	@PutMapping("/update/{id}")
-	public CharacterDTO Character(@PathVariable Long id, @RequestBody Character character) {
+	public CharacterDTO Character(@PathVariable Long id, @RequestBody Characters character) {
 		return this.service.updateCharacter(id, character);
 	}
 	
